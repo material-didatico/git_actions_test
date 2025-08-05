@@ -1,0 +1,231 @@
+%------------------------------------------------------------------------------%
+\documentclass[a4paper,12pt,fleqn]{article}
+
+\usepackage{calculo_varias_variaveis-1}
+
+\ShowAnswers
+
+%------------------------------------------------------------------------------%
+\begin{document}
+
+\makeHeader{CFVVI}{Prova 1 -- Turma 2}{05/05/2025}
+
+% 01
+%------------------------------------------------------------------------------%
+\exercise{25}
+Encontre uma parametrização para o círculo definido pela equação
+\( (x-3)^2 + (y+1)^2 = 4\)
+\clearpagequestiononly
+
+\begin{answer}
+  Círculo de raio 2 centrado no ponto \((3, -1)\)
+
+  Parametrização do círculo unitário centrado na origem
+  \begin{align*}
+    x      & = \cos(\theta) \\
+    y      & = \sin(\theta) \\
+    \theta & \in [0, 2\pi)
+  \end{align*}
+  Parametrização do círculo de raio 2 centrado na origem
+  \begin{align*}
+    x      & = 2\cos(\theta) \\
+    y      & = 2\sin(\theta) \\
+    \theta & \in [0, 2\pi)
+  \end{align*}
+  Parametrização do círculo de raio 2 centrado no ponto \((3, -1)\)
+  \begin{align*}
+  x      & = 2\cos(\theta) + 3 \\
+  y      & = 2\sin(\theta) - 1 \\
+  \theta & \in [0, 2\pi)
+  \end{align*}
+\end{answer}
+
+% 02
+%------------------------------------------------------------------------------%
+\exercise{25}
+Considerando a função
+\(
+  f(x,y) = \sqrt{16 - (x-1)^2 - (y-1)^2}
+\)
+\begin{enumerate}[label=(\alph*)]
+  \item \ [10] Determine o domínio de $f$ e represente-o graficamente
+  \item \ [5] Encontre a imagem de $f$
+  \item \ [10] Caracterize todas as curvas de nível de $f$ e esboce três delas
+\end{enumerate}
+\begin{questiononly}
+\begin{multicols}{2}
+  Domínio
+  \vspace{-0.8\baselineskip}
+  \begin{center}
+    \includegraphics{axis_xy}
+  \end{center}
+  Curvas de nível
+  \vspace{-0.8\baselineskip}
+  \begin{center}
+    \includegraphics{axis_xy}
+  \end{center}
+\end{multicols}
+\end{questiononly}
+\clearpagequestiononly
+
+\begin{answer}
+\begin{multicols}{2}
+  Domínio
+  \vspace{-0.8\baselineskip}
+  \begin{center}
+    \includegraphics{P1_T2_dominio}
+  \end{center}
+  Curvas de nível
+  \vspace{-0.8\baselineskip}
+  \begin{center}
+    \includegraphics{P1_T2_curvas_nivel}
+  \end{center}
+\end{multicols}
+
+\begin{enumerate}[label=(\alph*)]
+\item O domínio de $f$ é o conjunto de todos os pontos \((x, y)\) tais que:
+  \[
+    16 - (x-1)^2 - (y-1)^2 \geq 0
+  \]
+  \[
+    (x-1)^2 + (y-1)^2 \leq 4^2
+  \]
+  ou seja, os pontos do circulo centrado em \((1, 1)\) de raio 4.
+  Portanto, o domínio é
+  \[
+    D_f = \{(x, y) \in \R^2 \st (x-1)^2 + (y-1)^2 \leq 4^2\}
+  \]
+
+\item A imagem de $f$ é o conjunto de valores que $f$ pode assumir.
+  Como \( (x-1)^2 + (y-1)^2 \leq 16 \), temos:
+  \[
+    0 \leq \sqrt{16 - (x-1)^2 - (y-1)^2} \leq 4
+  \]
+  Logo, a imagem é:
+  \[
+    \text{Im}(f) = [0, 4]
+  \]
+
+\item As curvas de nível são definidas por $f(x,y) = c$ para $c \in [0, 4]$.
+  \begin{gather*}
+    \sqrt{16 - (x-1)^2 - (y-1)^2} = c \\
+    (x-1)^2 + (y-1)^2 = 16 - c^2
+  \end{gather*}
+  Cada curva de nível é uma circunferência com
+  centro em $(1, 1)$ e raio $\sqrt{16 - c^2}$
+
+  \begin{align*}
+    r & = 4 & c & = \sqrt{16 - r^2} = 0         & (x-1)^2 + (y-1)^2 & = 16 \\
+    r & = 2 & c & = \sqrt{16 - r^2} = \sqrt{12} & (x-1)^2 + (y-1)^2 & = 4  \\
+    r & = 1 & c & = \sqrt{16 - r^2} = \sqrt{15} & (x-1)^2 + (y-1)^2 & = 1
+  \end{align*}
+\end{enumerate}
+\end{answer}
+
+% 03
+%------------------------------------------------------------------------------%
+\exercise{30}
+Calcule o limite ou mostre que ele não existe
+\begin{enumerate}[label=(\alph*)]
+  \item \ [15] \(\lim_{(x,y) \to (0,0)} \frac{xy}{x^2 + y^2}\)
+  \item \ [15] \(\lim_{(x,y) \to (0,0)} \frac{\sqrt{x^2 + y^2 + 1} - 1}{x^2 + y^2} \)
+\end{enumerate}
+\clearpagequestiononly
+
+\begin{answer}
+\begin{enumerate}[label=(\alph*)]
+  \item Testando diferentes caminhos \\
+  Caminho \(y = x\)
+  \[
+    \lim_{(x,y) \to (0,0)} \frac{xy}{x^2 + y^2} \evalat{y=x}{}
+    = \lim_{x \to 0} \frac{x x}{x^2 + x^2}
+    = \lim_{x \to 0} \frac{x^2}{2x^2}
+    = \lim_{x \to 0} \frac{1}{2}
+    = \frac{1}{2}
+  \]
+  Caminho \(y = -x\)
+  \[
+    \lim_{(x,y) \to (0,0)} \frac{xy}{x^2 + y^2} \evalat{y=-x}{}
+    = \lim_{x \to 0} \frac{x(-x)}{x^2 + x^2}
+    = \lim_{x \to 0} \frac{-x^2}{2x^2}
+    = \lim_{x \to 0} \frac{-1}{2}
+    = -\frac{1}{2}
+  \]
+  Como os limites são diferentes, o limite \textbf{não existe}
+
+\item Multiplicando pelo conjugado
+  \begin{align*}
+    \frac{\sqrt{x^2 + y^2 + 1} - 1}{x^2 + y^2}
+    & = \frac{\sqrt{x^2 + y^2 + 1} - 1}{x^2 + y^2}
+        \times
+        \frac{\sqrt{x^2 + y^2 + 1} + 1}{\sqrt{x^2 + y^2 + 1} + 1} \\
+    & = \frac{x^2 + y^2}{(x^2 + y^2)(\sqrt{x^2 + y^2 + 1} + 1)} \\
+    & = \frac{1}{\sqrt{x^2 + y^2 + 1} + 1}
+  \end{align*}
+  \begin{align*}
+    \lim_{(x,y) \to (0,0)} \frac{\sqrt{x^2 + y^2 + 1} - 1}{x^2 + y^2}
+    & = \lim_{(x,y) \to (0,0)} \frac{1}{\sqrt{x^2 + y^2 + 1} + 1}  \\
+    & = \frac{1}{\sqrt{0^2 + 0^2 + 1} + 1}   \\
+    & = \frac{1}{2}
+  \end{align*}
+\end{enumerate}
+\end{answer}
+
+% 04
+%------------------------------------------------------------------------------%
+\exercise{20}
+Encontre e esboce as curvas que representam os cortes da superfície
+\(y^2-x^2=z\)
+pelos planos
+\(z=0\) e
+\(y=0\)
+\begin{questiononly}
+  \begin{multicols}{2}
+  \(z=0\)
+  \vspace{-0.8\baselineskip}
+  \begin{center}
+    \includegraphics{axis_xy}
+  \end{center}
+  \(y=0\)
+  \vspace{-0.8\baselineskip}
+  \begin{center}
+    \includegraphics{axis_xz}
+  \end{center}
+\end{multicols}
+\end{questiononly}
+
+\begin{answer}
+  \begin{multicols}{2}
+    \(z=0\)
+    \vspace{-0.8\baselineskip}
+    \begin{center}
+      \includegraphics{T2_conica_z0}
+    \end{center}
+    \(y=0\)
+    \vspace{-0.8\baselineskip}
+    \begin{center}
+      \includegraphics{T2_conica_y0}
+    \end{center}
+  \end{multicols}
+
+  No plano \(z=0\) a equação \(y^2-x^2=z\) se reduz a
+  \begin{align*}
+    y^2-x^2 & = 0       \\
+    y^2     & = x^2     \\
+    \abs{y} & = \abs{x} \\
+    y       & = \pm x
+  \end{align*}
+  que corresponde as retas \(y=x\) e \(y=-x\)
+
+  No plano \(y=0\) a equação \(y^2-x^2=z\) se reduz a
+  \begin{align*}
+    0-x^2 & = z    \\
+    z     & = -x^2
+  \end{align*}
+  que corresponde uma parábola com vértice na origem e apontando para baixo
+  no plano $zx$
+\end{answer}
+
+%------------------------------------------------------------------------------%
+\end{document}
+%------------------------------------------------------------------------------%

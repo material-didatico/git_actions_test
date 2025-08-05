@@ -1,0 +1,357 @@
+%------------------------------------------------------------------------------%
+% Luis A. D'Afonseca
+%
+%------------------------------------------------------------------------------%
+\documentclass[a4paper,12pt,fleqn]{article}
+
+\usepackage{style_avaliacao}
+
+\ShowAnswers
+
+\newcommand{\D}[2]{\frac{\partial {#1}}{\partial {#2}}}
+\newcommand{\DS}[2]{\frac{\partial^2 {#1}}{\partial {#2}^2}}
+\newcommand{\DM}[3]{\frac{\partial^2 {#1}}{\partial {#2} \partial {#3}}}
+
+
+\newcommand{\vetor}[2]{\left(\begin{array}{c} #1 \\ #2 \end{array}\right)}
+
+\newcommand{\veci}{\bm{i}}
+\newcommand{\vecj}{\bm{j}}
+\newcommand{\veck}{\bm{k}}
+
+%------------------------------------------------------------------------------%
+\begin{document}
+
+\makeHeader{CFVVI}{Prova 2 -- Turma 1}{12/08/2024}
+
+% 01
+%------------------------------------------------------------------------------%
+\exercise{20}
+Considerando que a equação
+\(
+  xe^y + \sin(xy) + y - \ln(2) = 0
+\)
+define $y$ como função de $x$ encontre \(\frac{dy}{dy}\).
+
+\begin{answer}
+  Usando a fórmula para a diferenciação implícita
+  \[
+    \frac{dy}{dx} = -\frac{F_x}{F_y}
+  \]
+  onde \(F(x, y) = xe^y + \sin(xy) + y - \ln(2)\) temos
+  \[
+    F_x
+    = \D{F}{x}
+    = \D{}{x}\big[xe^y + \sin(xy) + y - \ln(2)\big]
+    = e^y + y\cos(xy)
+  \]
+  \[
+    F_y
+    = \D{F}{y}
+    = \D{}{y}\big[xe^y + \sin(xy) + y - \ln(2)\big]
+    = xe^y + x\cos(xy) + 1
+  \]
+  Assim
+  \[
+    \frac{dy}{dx}
+    = -\frac{F_x}{F_y}
+    = -\frac{e^y + y\cos(xy)}{xe^y + x\cos(xy) + 1}
+  \]
+  \clearpage
+\end{answer}
+
+% 02
+%------------------------------------------------------------------------------%
+\exercise{25}
+Encontre a direção na qual a função
+\(
+  f(x, y) = x^2y + e^{xy}\sin(y)
+\)
+cresce mais rapidamente a partir do ponto
+\((1, 0)\).
+Qual a derivada nessa direção?
+
+\begin{answer}
+  A direção de crescimento mais rápido é a direção do vetor gradiente
+  \[
+    \nabla f
+    = \left(\begin{array}{c}
+      \dfrac{\partial f}{\partial x} \\[4mm]
+      \dfrac{\partial f}{\partial y}
+    \end{array}\right)
+  \]
+  Calculando as derivadas parciais
+  \[
+    \D{f}{x}
+    = \D{}{x}\big[x^2y + e^{xy}\sin(y)\big]
+    = 2xy + ye^{xy}\sin(y)
+  \]
+  \[
+    \D{f}{y}
+    = \D{}{y}\big[x^2y + e^{xy}\sin(y)\big]
+    = x^2 + xe^{xy}\sin(y) + e^{xy}\cos(y)
+  \]
+  Avaliando as derivadas no ponto $(1, 0)$
+  \[
+    \D{f}{x}(1, 0)
+    = \big[2xy + ye^{xy}\sin(y)\big]\evalat{(1, 0)}{}
+    = 2\times 1 \times 0 + 0 e^{1\times 0} \sin(0)
+    = 0
+  \]
+  \[
+    \D{f}{y}(1, 0)
+    = \big[x^2 + xe^{xy}\sin(y) + e^{xy}\cos(y)\big]\evalat{(1, 0)}{}
+    = 1^2 + 1 e^{1\times 0} \sin(0) + e^{1\times 0}\cos(0)
+    = 2
+  \]
+  A direção de maior crescimento é
+  \[
+    v = \nabla f(1, 0) = \vetor{0}{2}
+  \]
+
+  Temos agora que calcular a derivada na direção do vetor gradiente.
+  Primeiro encontramos o vetor unitário na direção de $v$
+  \[
+    u
+    = \frac{v}{\abs{v}}
+    = \frac{1}{\sqrt{0^2 + 2^2}}\vetor{0}{2}
+    = \frac{1}{2}\vetor{0}{2}
+    = \vetor{0}{1}
+  \]
+  \[
+    D_u
+    = \nabla f(1, 0) \cdot u
+    = \vetor{0}{2} \cdot \vetor{0}{1}
+    = 0 + 2 \times 1
+    = 2
+  \]
+  A derivada na direção de maior crescimento é 2.
+  \clearpage
+\end{answer}
+
+% 03
+%------------------------------------------------------------------------------%
+\exercise{25}
+Encontre linearização da função
+\(
+  f(x, y) = \sqrt{y-x}
+\)
+no ponto \((1, 2)\).
+
+\begin{answer}
+  A linearização de $f$ no ponto \((1, 2)\) é a função
+  \begin{align*}
+    L(x, y)
+    & = f(x_0, y_0) + f_x(x_0, y_0)(x-x_0) + f_y(x_0, y_0)(y-y_0) \\
+    & = f(1, 2) + f_x(1, 2)(x-1) + f_y(1, 2)(y-2)
+  \end{align*}
+  Precisamos das derivadas parciais de $f$
+  \[
+    f_x(x, y)
+    = \D{f}{x}
+    = \D{}{x}\left[\sqrt{y-x}\,\right]
+    = \D{}{x}\left[(y-x)^{\sfrac{1}{2}}\right]
+    = \frac{1}{2}(y-x)^{\sfrac{-1}{2}}\D{}{x}(y-x)
+    = \frac{-1}{2\sqrt{y-x}}
+  \]
+  \[
+    f_y(x, y)
+    = \D{f}{y}
+    = \D{}{y}\left[\sqrt{y-x}\,\right]
+    = \D{}{y}\left[(y-x)^{\sfrac{1}{2}}\right]
+    = \frac{1}{2}(y-x)^{\sfrac{-1}{2}}\D{}{y}(y-x)
+    = \frac{1}{2\sqrt{y-x}}
+  \]
+  Avaliando $f$ e suas derivadas no ponto $(1, 2)$
+  \[
+    f(1, 2)
+    = \sqrt{2-1}
+    = \sqrt{1}
+    = 1
+  \]
+  \[
+    f_x(1, 2)
+    = \frac{-1}{2\sqrt{2-1}}
+    = \frac{-1}{2}
+  \]
+  \[
+    f_y(1, 2)
+    = \frac{1}{2\sqrt{2-1}}
+    = \frac{1}{2}
+  \]
+  Assim
+  \begin{align*}
+    L(x, y)
+    & = f(1, 2) + f_x(1, 2)(x-1) + f_y(1, 2)(y-2) \\
+    & = 1 -\frac{1}{2}(x-1) + \frac{1}{2}(y-2) \\
+    & = 1 -\frac{x}{2} + \frac{1}{2} + \frac{y}{2} - 1 \\
+    & = -\frac{x}{2} + \frac{y}{2} + \frac{1}{2}
+  \end{align*}
+  \clearpage
+\end{answer}
+
+
+% 04 ex 20 pg 270 res pg 838
+%------------------------------------------------------------------------------%
+\exercise{30}
+Considerando a função
+\(
+  f(x, y) = x^4 + y^4 + 4xy
+\).
+\begin{enumerate}[leftmargin=15mm,labelwidth=11.5mm,align=left]
+  \item[a) {[5]}] Calcule o gradiente de $f$.
+  \item[b) {[5]}] Calcule a hessiana de $f$.
+  \item[c) {[10]}] Encontre todos os pontos críticos de $f$.
+  \item[d) {[10]}] Classifique cada ponto crítico de $f$.
+\end{enumerate}
+
+\begin{answer}
+  \noindent\textbf{a)}
+
+  Precisamos das derivadas parciais de $f$
+  \[
+    \D{f}{x}
+    = \D{}{x}\left[x^4 + y^4 + 4xy\right]
+    = 4x^3 + 4y
+  \]
+  \[
+    \D{f}{y}
+    = \D{}{y}\left[x^4 + y^4 + 4xy\right]
+    = 4y^3 + 4x
+  \]
+  então
+  \[
+    \nabla f = \vetor{4x^3 + 4y}{4y^3 + 4x}
+  \]
+
+  \noindent\textbf{b)}
+
+  Precisamos das derivadas parciais de segunda ordem de $f$
+  \[
+    \DS{f}{x}
+    = \D{}{x}\left[4x^3 + 4y\right]
+    = 12x^2
+  \]
+  \[
+    \D{f}{y}
+    = \D{}{y}\left[4y^3 + 4x\right]
+    = 12y^2
+  \]
+  \[
+    \DM{f}{x}{y}
+    = \D{}{x}\D{f}{y}
+    = \D{}{x}\left[4y^3 + 4x\right]
+    = 4
+  \]
+  então
+  \[
+    H = \left(\begin{array}{cc}
+      12x^2 & 4 \\
+      4 & 12y^2
+    \end{array}\right)
+  \]
+
+  \noindent\textbf{c)}
+
+  A função é um polinômio, então possui derivadas em todos os pontos do plano.
+  Assim os pontos críticos são apenas os pontos onde as derivadas parciais são zero,
+  \(\nabla f = 0\)
+  \[
+    4x^3 + 4y = 0
+    \qquad\text{e}\qquad
+    4y^3 + 4x = 0
+  \]
+  ou, simplificando,
+  \[
+    x^3 + y = 0
+    \qquad\text{e}\qquad
+    y^3 + x = 0
+  \]
+  Isolando $y$ na primeira equação, \(y = -x^3\), e substituindo na segunda, temos
+  \begin{align*}
+    y^3 + x                 & = 0 \\
+    \left(-x^3\right)^3 + x & = 0 \\
+    -x^9 + x                & = 0 \\
+    x^9 - x                 & = 0 \\
+    x(x^8 - 1)              & = 0
+  \end{align*}
+  As soluções dessa equação são $x=0$, $x=1$ ou $x-1$.
+  Se $x=0$ temos $y=0$,
+  se $x=1$ temos $y=-1$ e
+  se $x=-1$ temos $y=1$.
+  Portanto, os pontos críticos são
+  \[
+    (x_1, y_1) = (0, 0),
+    \qquad\qquad
+    (x_2, y_2) = (1, -1)
+    \qquad\text{e}\qquad
+    (x_3, y_3) = (-1, 1)
+  \]
+
+  \noindent\textbf{d)}
+
+  Para classificar os pontos críticos precisamos avaliar o discriminante nos
+  pontos críticos.
+
+  Considerando o ponto \((x_1, y_1) = (0, 0)\)
+  \[
+    f_{xx}(0, 0) = 0
+  \]
+  \[
+    f_{yy}(0, 0) = 0
+  \]
+  \[
+    f_{xy}(0, 0) = 4
+  \]
+  \[
+    D_1
+    = f_{xx}(0, 0)f_{yy}(0, 0) - f^2_{xy}(0, 0)
+    = 0 \times 0 - 4^2
+    = -16 < 0
+  \]
+  Portanto, o ponto $(0, 0)$ é um ponto de sela.
+
+  Considerando o ponto \((x_2, y_2) = (1, -1)\)
+  \[
+    f_{xx}(1, -1) = 12
+  \]
+  \[
+    f_{yy}(1, -1) = 12
+  \]
+  \[
+    f_{xy}(1, -1) = 4
+  \]
+  \[
+    D_2
+    = f_{xx}(1, -1)f_{yy}(1, -1) - f^2_{xy}(1, -1)
+    = 12 \times 12 - 4^2
+    = 144 -16
+    = 128 > 0
+  \]
+  Portanto, o ponto $(1, -1)$ é um máximo ou mínimo local. Como \(f_{xx}(1, -1) = 12 > 0\)
+  o ponto é um ponto de mínimo local.
+
+  Considerando o ponto \((x_3, y_3) = (-1, 1)\)
+  \[
+    f_{xx}(-1, 1) = 12
+  \]
+  \[
+    f_{yy}(-1, 1) = 12
+  \]
+  \[
+    f_{xy}(-1, 1) = 4
+  \]
+  \[
+    D_3
+    = f_{xx}(-1, 1)f_{yy}(-1, 1) - f^2_{xy}(-1, 1)
+    = 12 \times 12 - 4^2
+    = 144 -16
+    = 128 > 0
+  \]
+  Portanto, o ponto $(-1, 1)$ é um máximo ou mínimo local. Como \(f_{xx}(-1, 1) = 12 > 0\)
+  o ponto é um ponto de mínimo local.
+\end{answer}
+
+%------------------------------------------------------------------------------%
+\end{document}
+%------------------------------------------------------------------------------%

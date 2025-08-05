@@ -1,0 +1,308 @@
+%------------------------------------------------------------------------------%
+% Luis A. D'Afonseca
+%
+%------------------------------------------------------------------------------%
+\documentclass[a4paper,12pt,fleqn]{article}
+
+\usepackage{style_avaliacao}
+
+\ShowAnswers
+
+\newcommand{\D}[2]{\frac{\partial {#1}}{\partial {#2}}}
+\newcommand{\DS}[2]{\frac{\partial^2 {#1}}{\partial {#2}^2}}
+\newcommand{\DM}[3]{\frac{\partial^2 {#1}}{\partial {#2} \partial {#3}}}
+
+\newcommand{\vetor}[2]{\left(\begin{array}{c} #1 \\ #2 \end{array}\right)}
+
+\newcommand{\veci}{\bm{i}}
+\newcommand{\vecj}{\bm{j}}
+\newcommand{\veck}{\bm{k}}
+
+\newcommand{\comentario}[1]{{\color{magenta} #1 \par\vspace{\baselineskip}\par}}
+
+%------------------------------------------------------------------------------%
+\begin{document}
+
+\makeHeader{CFVVI}{Prova 3 -- Turma 1}{09/09/2024}
+
+%\comentario{
+%  Nos exercícios sobre números complexos:
+%  \begin{itemize}
+%    \item Como esta é uma disciplina de cálculo, exigi que as respostas sejam sempre
+%    em radianos, mas os alunos podem fazer os passos intermediários em graus.
+%
+%    \item No cálculo das raizes o aluno pode deixar a resposta final na forma polar,
+%    não é necessário retornar para a forma canônica.
+%  \end{itemize}
+%}
+
+% 01
+%------------------------------------------------------------------------------%
+\exercise{50}
+Encontre o ponto da superfície \(z=xy+1\) que está mais próximo da origem.
+
+\begin{answer}
+  Queremos minimizar a distância
+  \[
+    d(x, y, z) = \sqrt{x^2 + y^2 + z^2}
+  \]
+  Como a função raiz quadrada é crescente podemos minimizar a função
+  \[
+    f(x, y, z) = x^2 + y^2 + z^2
+  \]
+  suas derivadas parciais são
+  \[
+    f_x(x, y, z) = 2x
+    \qquad
+    f_y(x, y, z) = 2y
+    \qquad
+    f_z(x, y, z) = 2z
+  \]
+  As derivadas parciais da função \(g(x, y, z)=z-xy\) são
+  \[
+    g_x(x, y, z) = -y
+    \qquad
+    g_y(x, y, z) = -x
+    \qquad
+    g_z(x, y, z) = 1
+  \]
+  Aplicando os Multiplicadores de Lagrange, precisamos resolver o sistema
+  \[
+  \begin{cases}
+    2x = -\lambda y \\
+    2y = -\lambda x \\
+    2z = \lambda  \\
+    z-xy = 1
+  \end{cases}
+  \]
+  Isolamos $x$ na primeira equação e substituimos na segunda
+  \[
+    x = \frac{-\lambda y}{2}
+  \]
+  \[
+    y
+    = \frac{-\lambda}{2} x
+    = \frac{-\lambda}{2} \; \frac{-\lambda y}{2}
+    = \frac{\lambda^2}{4} y
+  \]
+  Temos $y=0$ ou
+  \[
+    \frac{\lambda^2}{4} = 1
+    \quad\Rightarrow\quad
+    \lambda^2 = 4
+    \quad\Rightarrow\quad
+    \lambda = \pm 2
+  \]
+
+  Se $y=0$ a quarta equação se reduz a $z=1$, pela terceira \(\lambda=2\) e
+  \[
+    x
+    = \frac{-\lambda y}{2}
+    = \frac{-2\times 0}{2}
+    = 0
+  \]
+  Obtemos o ponto \((x_1, y_1, z_1) = (0, 0, 1)\)
+
+  \vspace{2\baselineskip}
+  Se $\lambda=2$
+  \[
+    x
+    = \frac{-\lambda y}{2}
+    = \frac{-2y}{2}
+    = -y
+  \]
+  \[
+    2z = \lambda = 2
+    \quad\Rightarrow\quad
+    z = 1
+  \]
+  Substituindo na quarta equação
+  \begin{align*}
+    z-xy & = 1 \\
+    1 - (-y)y & = 1 \\
+    y^2 = 0 \\
+    y = 0
+  \end{align*}
+  Obtemos novamente o ponto \((x_1, y_1, z_1) = (0, 0, 1)\)
+
+  \vspace{2\baselineskip}
+  Se $\lambda=-2$
+  \[
+    x
+    = \frac{-\lambda y}{2}
+    = \frac{-(-2)y}{2}
+    = y
+  \]
+  \[
+    2z = \lambda = -2
+    \quad\Rightarrow\quad
+    z = -1
+  \]
+  Substituindo na quarta equação
+  \begin{align*}
+    z-xy & = 1 \\
+    -1 - y^2 & = 1 \\
+    -y^2 = 2 \\
+    y^2 = -2
+  \end{align*}
+  Não existe solução real.
+
+  O ponto mais próximo da origem é \((0, 0, 1)\).
+  \clearpage
+\end{answer}
+
+% 02
+%------------------------------------------------------------------------------%
+\exercise{25}
+Dado \(z=\left(\sqrt{3}+i\right)^4 \), calcule
+\begin{enumerate}[label=\alph*),itemsep=0pt]
+  \item a parte real de $z$,
+  \item a parte imaginária de $z$,
+  \item o módulo de $z$,
+  \item o argumento de $z$
+\end{enumerate}
+
+\begin{answer}
+  Convertendo $u=\sqrt{3}+i$ para a forma polar
+  \[
+    \rho
+    = \abs{u}
+    = \sqrt{\left(\sqrt{3}\right)^2 + 1^2}
+    = \sqrt{4}
+    = 2
+  \]
+  \[
+    \sin(\varphi) = \frac{\Im(u)}{\abs{u}} = \frac{1}{2}
+    \qquad\qquad
+    \cos(\varphi) = \frac{\Re(u)}{\abs{u}} = \frac{\sqrt{3}}{2}
+    \qquad\qquad
+    \varphi = \arg(u) = \ang{30} = \frac{\pi}{6}
+  \]
+  Assim
+  \[
+    u
+    = \rho\left[\cos\left(\varphi\right)+ i\sin\left(\varphi\right)\right]
+    = 2\left[\cos\left(\frac{\pi}{6}\right)+ i\sin\left(\frac{\pi}{6}\right)\right]
+  \]
+  Portanto
+  \begin{align*}
+    z
+    & = u^3 \\[2mm]
+    & = \rho^4\left[\cos\left(4\varphi\right)+ i\sin\left(4\varphi\right)\right] \\[2mm]
+    & = 2^4\left[\cos\left(\frac{4\pi}{6}\right)+ i\sin\left(\frac{4\pi}{6}\right)\right] \\[2mm]
+    & = 16\left[\cos\left(\frac{2\pi}{3}\right)+ i\sin\left(\frac{2\pi}{3}\right)\right] \\[2mm]
+    & = 16\left[-\frac{1}{2}+ i\frac{\sqrt{3}}{2}\right] \\[2mm]
+    & = -8 + 8\sqrt{3}i
+  \end{align*}
+  Parte real de $z$
+  \[
+    \Re(z) = -8
+  \]
+  Parte imaginária de $z$
+  \[
+    \Im(z) = 8\sqrt{3}
+  \]
+  Módulo de $z$
+  \[
+    \abs{z} = 16
+  \]
+  Argumento de $z$
+  \[
+    \arg(z) = \frac{2\pi}{3}
+  \]
+  \clearpage
+\end{answer}
+
+% 03
+%------------------------------------------------------------------------------%
+\exercise{25}
+Encontre as raízes cúbicas complexas do número \( z = 27i \).
+
+\begin{answer}
+  Escrevemos \( z = 27i \) na forma trigonométrica
+  \[
+    z = 27 \left[ \cos\left(\frac{\pi}{2}\right) + i \sin\left(\frac{\pi}{2}\right) \right]
+  \]
+  As raízes cúbicas são
+  \begin{align*}
+    u_k
+    & = \sqrt[3]{27} \left[
+              \cos\left(\frac{1}{3}\left(\frac{\pi}{2} + 2k\pi\right)\right)
+          + i \sin\left(\frac{1}{3}\left(\frac{\pi}{2} + 2k\pi\right)\right)
+        \right]
+    & k = 0, 1, 2    \\[2mm]
+    & = 3 \left[
+            \cos\left( \frac{\pi + 4k\pi}{6} \right)
+        + i \sin\left( \frac{\pi + 4k\pi}{6} \right)
+        \right]
+  \end{align*}
+  Para cada valor de $k$
+  \begin{align*}
+    u_0
+    & = 3 \left[
+              \cos\left( \frac{\pi + 4\times0\pi}{6} \right)
+          + i \sin\left( \frac{\pi + 4\times0\pi}{6} \right)
+          \right] \\[2mm]
+    & = 3 \left[
+              \cos\left( \frac{\pi}{6} \right)
+          + i \sin\left( \frac{\pi}{6} \right)
+          \right] \\[2mm]
+    & = 3 \left[
+              \cos\left( \ang{30} \right)
+          + i \sin\left( \ang{30} \right)
+          \right] \\[2mm]
+    & = 3 \left[
+              \frac{\sqrt{3}}{2}
+          + i \frac{1}{2}
+          \right] \\[2mm]
+    & = \frac{3\sqrt{3}}{2} + \frac{3}{2} i
+  \end{align*}
+  \begin{align*}
+    u_1
+    & = 3 \left[
+              \cos\left( \frac{\pi + 4\times1\pi}{6} \right)
+          + i \sin\left( \frac{\pi + 4\times1\pi}{6} \right)
+          \right] \\[2mm]
+    & = 3 \left[
+              \cos\left( \frac{5\pi}{6} \right)
+          + i \sin\left( \frac{5\pi}{6} \right)
+          \right] \\[2mm]
+    & = 3 \left[
+              \cos\left( \ang{150} \right)
+          + i \sin\left( \ang{150} \right)
+          \right] \\[2mm]
+    & = 3 \left[
+            - \frac{\sqrt{3}}{2}
+          + i \frac{1}{2}
+          \right] \\[2mm]
+    & = -\frac{3\sqrt{3}}{2} + \frac{3}{2}i
+  \end{align*}
+  \begin{align*}
+    u_2
+    & = 3 \left[
+              \cos\left( \frac{\pi + 4\times2\pi}{6} \right)
+          + i \sin\left( \frac{\pi + 4\times2\pi}{6} \right)
+          \right] \\[2mm]
+    & = 3 \left[
+              \cos\left( \frac{9\pi}{6} \right)
+          + i \sin\left( \frac{9\pi}{6} \right)
+          \right] \\[2mm]
+    & = 3 \left[
+              \cos\left( \frac{3\pi}{2} \right)
+          + i \sin\left( \frac{3\pi}{2} \right)
+          \right] \\[2mm]
+    & = 3 \left[
+              \cos\left( \ang{270} \right)
+          + i \sin\left( \ang{270} \right)
+          \right] \\[2mm]
+    & = 3 \left[
+            0
+            + i (-1)
+          \right]
+     = -3i
+  \end{align*}
+\end{answer}
+
+%------------------------------------------------------------------------------%
+\end{document}
+%------------------------------------------------------------------------------%

@@ -1,0 +1,41 @@
+
+settings.outformat = "pdf";
+defaultpen(fontsize(8pt));
+size(8cm, 0);
+
+import graph;
+import math;
+
+pen[] pens = {blue, purple, orange};
+
+void drawAxis(string label_x = '$x$',  string label_y = '$y$')
+{
+  real gridStep  = 1.0;
+  int  gridLines = 7;
+
+  pen gridPen = gray(0.9) + linewidth(0.3pt);
+  pen axisPen = black     + linewidth(1pt);
+
+  for (int i = -gridLines; i <= gridLines; ++i)
+  {
+    draw((i*gridStep, -gridLines*gridStep) -- (i*gridStep, gridLines*gridStep), gridPen);
+    draw((-gridLines*gridStep, i*gridStep) -- (gridLines*gridStep, i*gridStep), gridPen);
+  }
+
+  draw((-gridLines*gridStep, 0) -- (gridLines*gridStep, 0), axisPen, Arrow(TeXHead));
+  draw((0, -gridLines*gridStep) -- (0, gridLines*gridStep), axisPen, Arrow(TeXHead));
+
+  label(label_x, (gridLines*gridStep, 0), SE);
+  label(label_y, (0, gridLines*gridStep), NW);
+
+  for (int i = -gridLines + 1; i <= gridLines - 1; ++i)
+  {
+    if (i != 0)
+    {
+      dot((i*gridStep, 0), black);
+      dot((0, i*gridStep), black);
+      label("$" + string(i) + "$", (i*gridStep, 0), S);
+      label("$" + string(i) + "$", (0, i*gridStep), W);
+    }
+  }
+}

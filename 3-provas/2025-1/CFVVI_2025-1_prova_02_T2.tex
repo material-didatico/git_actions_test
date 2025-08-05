@@ -1,0 +1,184 @@
+%------------------------------------------------------------------------------%
+\documentclass[a4paper,12pt,fleqn]{article}
+
+\usepackage{calculo_varias_variaveis-1}
+
+\ShowAnswers
+
+%------------------------------------------------------------------------------%
+\begin{document}
+
+\makeHeader{CFVVI}{Prova 2 -- Turma 2}{04/06/2024}
+
+% 01
+%------------------------------------------------------------------------------%
+\exercise{25}
+Utilize a linearização da função
+\(
+  f(x, y) = e^{x^2 - y^2} \cos(xy)
+\)
+no ponto \(\left(\sqrt{\pi}, \sqrt{\pi}\right)\),
+para obter uma estimativa para \(f(2, 1)\)
+\clearpagequestiononly
+
+\begin{answer}
+  Calculando as derivadas parciais
+  \begin{align*}
+    \D{f}{x} & = \hpm e^{x^2 - y^2} \big(2x \cos(xy) - y \sin(xy)\big) \\
+    \D{f}{y} & =    - e^{x^2 - y^2} \big(2y \cos(xy) + x \sin(xy)\big)
+  \end{align*}
+  Avaliando as derivadas parciais no ponto \(\left(\sqrt{\pi}, \sqrt{\pi}\right)\)
+  \begin{align*}
+    \D{f}{x}\left(\sqrt{\pi}, \sqrt{\pi}\right)
+      & = e^{\sqrt{\pi}^2 - \sqrt{\pi}^2}
+          \Big(2\sqrt{\pi} \cos\left(\sqrt{\pi}\sqrt{\pi}\right)
+              - \sqrt{\pi} \sin\left(\sqrt{\pi}\sqrt{\pi}\right)\Big) \\
+      & = e^{0}
+          \Big(2\sqrt{\pi} \cos\left(\pi\right)
+              - \sqrt{\pi} \sin\left(\pi\right)\Big) \\
+      & = 2\sqrt{\pi} (-1) - \sqrt{\pi} 0 \\
+      & = -2\sqrt{\pi} \\
+    \D{f}{y}\left(\sqrt{\pi}, \sqrt{\pi}\right)
+      & = - e^{\sqrt{\pi}^2 - \sqrt{\pi}^2}
+          \Big(2\sqrt{\pi} \cos(\sqrt{\pi}\sqrt{\pi})
+              + \sqrt{\pi} \sin(\sqrt{\pi}\sqrt{\pi})\Big) \\
+      & = - e^{0} \Big(2\sqrt{\pi} (-1) + \sqrt{\pi} 0\Big) \\
+      & = 2\sqrt{\pi}
+  \end{align*}
+  Avaliando a função no ponto  \(\left(\sqrt{\pi}, \sqrt{\pi}\right)\)
+  \begin{align*}
+    f(\sqrt{\pi}, \sqrt{\pi})
+      & = e^{x^2 - y^2} \cos(xy) \\
+      & = e^{\sqrt{\pi}^2 - \sqrt{\pi}^2} \cos\left(\sqrt{\pi}\sqrt{\pi}\right) \\
+      & = e^{0} \cos\left(\pi\right) \\
+      & = -1
+  \end{align*}
+  Escrevendo a aproximação linear centrada no ponto  \(\left(\sqrt{\pi}, \sqrt{\pi}\right)\)
+  \begin{align*}
+    L(x, y)
+      & = f(x_0, y_0) + f_x(x_0, y_0)(x-x_0) + f_y(x_0, y_0)(y-y_0) \\
+      & = f\left(\sqrt{\pi}, \sqrt{\pi}\right)
+        + f_x\left(\sqrt{\pi}, \sqrt{\pi}\right)\left(x-\sqrt{\pi}\right)
+        + f_y\left(\sqrt{\pi}, \sqrt{\pi}\right)\left(y-\sqrt{\pi}\right) \\
+      & = -1
+        - 2\sqrt{\pi}\left(x-\sqrt{\pi}\right)
+        + 2\sqrt{\pi}\left(y-\sqrt{\pi}\right)  \\
+      & = -1 - 2\sqrt{\pi}x + 2\pi + 2\sqrt{\pi}y - 2\pi \\
+      & = 2\sqrt{\pi}(y-x) -1
+  \end{align*}
+  Avaliando a estimativa para \(f(3, 2)\)
+  \[
+    f(2, 1) \approx L(2, 1)
+            = 2\sqrt{\pi}(1-2) -1
+            = -2\sqrt{\pi} -1
+            \approx -4.54490770181
+  \]
+  Comparando com o valor exato
+  \[
+    f(2, 1)
+    = e^3\cos(2)
+    \approx -8.35853265094
+  \]
+  os pontos estão muito longe para que a aproximação linear seja adequada
+\end{answer}
+
+% 02
+%------------------------------------------------------------------------------%
+\exercise{25}
+Considere que a equação
+\(
+  \sin(xz) + y^2 z = 1
+\)
+defina $z$ como função de $x$ e $y$, encontre \(\D{z}{x}\)
+\clearpagequestiononly
+
+\begin{answer}
+  \begin{align*}
+    \sin(xz) + y^2 z                                   & = 1                                    \\
+    \D{}{x}\left(\sin(xz) + y^2 z\right)               & = 0                                    \\
+    \cos(xz)\left(z + x \D{z}{x}\right) + y^2 \D{z}{x} & = 0                                    \\
+    z\cos(xz) + \left(x\cos(xz) + y^2\right) \D{z}{x}  & = 0                                    \\
+    \left( x \cos(xz) + y^2 \right) \D{z}{x}           & = -z \cos(xz)                          \\
+    \D{z}{x}                                           & = \frac{-z \cos(xz)}{x \cos(xz) + y^2}
+  \end{align*}
+\end{answer}
+
+% 03
+%------------------------------------------------------------------------------%
+\exercise{25}
+Seja \( f(x, y) = x^2 y + \cos(y) \)
+\begin{enumerate}[label=\alph*)]
+  \item Calcule o gradiente de $f$
+  \item Calcule a derivada de $f$ no ponto $(1, \pi)$ na direção do vetor $\vetor{3}{4}$
+\end{enumerate}
+\clearpagequestiononly
+
+\begin{answer}
+  \begin{enumerate}[label=\alph*)]
+    \item
+      Vetor gradiente
+      \[
+        \nabla f(x, y)
+        = \Vetor{\D{f}{x}}{\D{f}{y}}
+        = \vetor{2x y}{x^2 - \sin(y)}
+      \]
+    \item
+      Gradiente no ponto $(1, \pi)$
+      \[
+        \nabla f(x, y) (1, \pi)
+          = \vetor{2\times 1 \times\pi}{1^2 - \sin(\pi)}
+          = \vetor{2\pi}{1}
+      \]
+      Calculando um vetor unitário na direção de $v$
+      \[
+        u
+        = \frac{v}{\norm{v}}
+        = \frac{1}{\sqrt{3^2 + 4^2}} \vetor{3}{4}
+        = \frac{1}{5} \vetor{3}{4}
+      \]
+      Derivada direcional
+      \begin{align*}
+        D_u f(1, \pi) & = \nabla f(1, \pi) \cdot u                       \\
+                      & = \vetor{2\pi}{1} \cdot \frac{1}{5} \vetor{3}{4} \\
+                      & = \frac{1}{5} (6\pi + 4) \\
+                      & = \frac{6\pi + 4}{5}
+      \end{align*}
+  \end{enumerate}
+\end{answer}
+
+% 04
+%------------------------------------------------------------------------------%
+\exercise{25}
+Seja \( f(x, y, z) = \ln(1 + x y^2 + z^2) \),
+calcule \(\DM{f}{x}{z} \) no ponto \( (1, 1, 2) \).
+Efetue as derivadas na ordem especificada pela notação.
+\clearpagequestiononly
+
+\begin{answer}
+\begin{align*}
+  \D{f}{z}
+  & = \D{}{z} \ln(1 + x y^2 + z^2) \\
+  & = \frac{1}{1 + x y^2 + z^2} \D{}{z}(1 + x y^2 + z^2) \\
+  & = \frac{2z}{1 + x y^2 + z^2}
+\end{align*}
+\begin{align*}
+  \DM{f}{x}{z}
+  & = \D{}{x}\left(\frac{2z}{1 + x y^2 + z^2}\right) \\
+  & = 2z\D{}{x}\left(1 + x y^2 + z^2\right)^{-1} \\
+  & = 2z(-1)\left(1 + x y^2 + z^2\right)^{-2}\D{}{x}\left(1 + x y^2 + z^2\right) \\
+  & = \frac{-2z}{\left(1 + x y^2 + z^2\right)^2} \; y^2 \\
+  & = \frac{-2z y^2}{(1 + x y^2 + z^2)^2}
+\end{align*}
+\begin{align*}
+  \DM{f}{x}{z}(1, 1, 2)
+  & = \frac{-2z y^2}{(1 + x y^2 + z^2)^2} \evalat{(1, 1, 2)}{} \\
+  & = \frac{-2\times 2\times 1^2}{(1 + 1\times 1^2 + 2^2)^2}  \\
+  & = \frac{-2^2}{6^2}  \\
+  & = \frac{-2^2}{2^2\times 3^2}  \\
+  & = \frac{-1}{9}
+\end{align*}
+\end{answer}
+
+%------------------------------------------------------------------------------%
+\end{document}
+%------------------------------------------------------------------------------%

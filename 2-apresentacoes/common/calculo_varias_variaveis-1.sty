@@ -1,0 +1,75 @@
+%------------------------------------------------------------------------------%
+% Definições particulares para as Apresentações de
+% Calculo de Funções de Várias Variáveis I
+%------------------------------------------------------------------------------%
+
+\usepackage{class_notes}
+\usepackage{mathconfig}
+
+%------------------------------------------------------------------------------%
+
+% Issue an error is include file is missing
+\def\mkfilename#1{%
+  \if\relax\detokenize\expandafter{#1}\relax\else#1/\fi%
+}
+
+\AddToHook{include/before}{%
+  \IfFileExists{\mkfilename\CurrentFilePath\CurrentFile}{}{%
+    \GenericError{}{Error: File \mkfilename\CurrentFilePath\CurrentFile.tex not found!}{\@gobble}{}%
+}}
+
+%------------------------------------------------------------------------------%
+
+\graphicspath  {{./figs/},{./asy/}}
+\def\input@path{{./figs/},{./ex/}}
+
+\newcounter{exemplo}
+\setcounter{exemplo}{0}
+
+%------------------------------------------------------------------------------%
+
+\author{\large Luis Alberto D'Afonseca}
+\date  {Cálculo de Funções de Várias Variáveis -- I}
+
+\newcommand{\addtitle}{
+\begin{frame}
+  \titlepage
+  \addtext{4}{0.3,8.6}{\scriptsize\today}
+\end{frame}
+}
+
+\setlength{\parskip}{0.5\baselineskip}
+
+%------------------------------------------------------------------------------%
+
+\newcommand{\fmedio}{f_{\text{médio}}}
+
+\newcommand{\vpt}{\vphantom{\int_{\int}^{\int}}}
+
+\newcommand*{\hint}[1]{\underline{Dica}: \textit{#1}}
+
+\newcommand{\D} [2]{\frac{\partial   {#1}}{\partial {#2}}}
+\newcommand{\DS}[2]{\frac{\partial^2 {#1}}{\partial {#2}^2}}
+\newcommand{\DM}[3]{\frac{\partial^2 {#1}}{\partial {#2} \partial {#3}}}
+
+\newcommand{\vetor}[2]{\left(\begin{array}{c} #1 \\ #2 \end{array}\right)}
+\newcommand{\Vetor}[2]{\left(\begin{array}{c}
+  \displaystyle #1 \\[5mm]
+  \displaystyle #2
+\end{array}\right)}
+
+\newcommand{\vetortri}[3]{\left(\begin{array}{c} #1 \\ #2 \\ #3 \end{array}\right)}
+\newcommand{\Vetortri}[3]{\left(\begin{array}{c}
+  \displaystyle #1 \\[5mm]
+  \displaystyle #2 \\[5mm]
+  \displaystyle #3
+\end{array}\right)}
+
+\newcommand{\veci}{\bm{i}}
+\newcommand{\vecj}{\bm{j}}
+\newcommand{\veck}{\bm{k}}
+
+\DeclareMathOperator\CIS{cis}
+\newcommand{\cis}[1]{\left[\cos\left(#1\right) + i \sin\left(#1\right)\right]}
+
+%------------------------------------------------------------------------------%

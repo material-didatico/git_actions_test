@@ -1,0 +1,378 @@
+%------------------------------------------------------------------------------%
+\documentclass[a4paper,12pt,fleqn]{article}
+
+\usepackage{calculo_varias_variaveis-1}
+
+\ShowAnswers
+
+%------------------------------------------------------------------------------%
+\begin{document}
+
+\makeHeader{CFVVI}{Prova 3 -- Turma 2}{14/07/2025}
+
+\setlength{\jot}{6pt}
+
+% 01
+%------------------------------------------------------------------------------%
+\exercise{20}
+Calcule raízes cúbicas do número complexo \( z = 1 + i\sqrt{3} \)
+\clearpagequestiononly
+
+\begin{answer}
+  Converter para forma polar
+  \begin{align*}
+    x       & = \Re(z) = 1        \qquad\qquad
+    y         = \Im(z) = \sqrt{3} \qquad\qquad
+    |z|       = \sqrt{x^2+y^2}
+              = \sqrt{1^2 + \left(\sqrt{3}\right)^2}
+              = 2         \\
+    \varphi & = \arg(z)
+              = \arctan\left(\frac{y}{x}\right)
+              = \arctan\left(\frac{\sqrt{3}}{1}\right)
+              = \frac{\pi}{3} \\
+    z       & = 2 \cis{\frac{\pi}{3}}
+              = 2e^{i\pi/3}
+  \end{align*}
+
+  Aplicar a fórmula de De Moivre para as raízes cúbicas
+  \[
+    u_k = \sqrt[3]{2}\cis{\frac{\pi/3 + 2k\pi}{3}}
+    \qquad\qquad k = 0,1,2
+  \]
+  Calculando os argumentos das raízes
+  \begin{align*}
+    \varphi_0
+    & = \frac{\pi/3 + 2\times 0\pi}{3}
+      = \frac{\pi}{9} \\
+    \varphi_1
+    & = \frac{\pi/3 + 2\times 1\pi}{3}
+      = \frac{\pi/3 + 6\pi/3}{3}
+      = \frac{7\pi}{9} \\
+    \varphi_2
+    & = \frac{\pi/3 + 2\times 2\pi}{3}
+      = \frac{\pi/3 + 12\pi/3}{3}
+      = \frac{13\pi}{9}
+  \end{align*}
+  As raízes são
+  \begin{align*}
+    u_0 & = \sqrt[3]{2} \cis{\frac{\pi}{9}}   = \sqrt[3]{2} e^{\sfrac{  i\pi}{9}}\\
+    u_1 & = \sqrt[3]{2} \cis{\frac{7\pi}{9}}  = \sqrt[3]{2} e^{\sfrac{7 i\pi}{9}}\\
+    u_2 & = \sqrt[3]{2} \cis{\frac{13\pi}{9}} = \sqrt[3]{2} e^{\sfrac{13i\pi}{9}}
+  \end{align*}
+\end{answer}
+
+% 02
+%------------------------------------------------------------------------------%
+\exercise{20}
+Converta a equação para coordenadas cartesianas e mostre que a solução é uma cônica
+\[
+  r = \frac{10}{4 + \sin\theta}
+\]
+\clearpagequestiononly
+
+\begin{answer}
+  Queremos mostrar que a equação, escrita em coordenadas cartesianas, $(x, y)$,
+  é uma expressão com termos de segundo grau em $x$ e $y$
+  \begin{align*}
+    r                         & = \frac{10}{4 + \sin\theta} \\
+    r(4 + \sin\theta)         & = 10                        \\
+    4r + r\sin\theta          & = 10                        \\
+    4r + y                    & = 10                        \\
+    4r                        & = 10 - y                    \\
+    16\left(x^2 + y^2\right)  & = 100 - 20y + y^2           \\
+    16x^2 + 16y^2             & = 100 - 20y + y^2           \\
+    16x^2 + 15y^2 + 20y - 100 & = 0
+  \end{align*}
+\end{answer}
+
+% 03
+%------------------------------------------------------------------------------%
+\exercise{30}
+Encontre e classifique os pontos críticos da função
+\(
+  f(x, y) = \sin(x)\sin(y)
+\)
+na região aberta $-\pi<x<\pi$ e  $-\pi<y<\pi$
+\clearpagequestiononly
+
+\begin{answer}
+  \setlength\columnsep{3em}
+  \begin{multicols}{2}
+    \raggedcolumns
+    Calculando as \textbf{derivadas primeiras} de $f$
+    \begin{align*}
+      \D{f}{x}
+      & = \D{}{x}\left(\sin(x)\sin(y)\right) \\
+      & = \D{}{x}\left(\sin(x)\right)\sin(y) \\
+      & = \cos(x)\sin(y)
+    \end{align*}
+    \begin{align*}
+      \D{f}{y}
+      & = \D{}{y}\left(\sin(x)\sin(y)\right) \\
+      & = \sin(x)\D{}{y}\left(\sin(y)\right) \\
+      & = \sin(x)\cos(y)
+    \end{align*}
+    Encontrando os \textbf{pontos críticos}.
+    As derivadas parciais de $f$ existem em todo o plano,
+    temos então que resolver o sistema \(\nabla f = 0\)
+    \begin{align*}
+      \cos(x)\sin(y) & = 0 \\
+      \sin(x)\cos(y) & = 0
+    \end{align*}
+    Da primeira equação temos que
+    \[
+      \cos(x) = 0 \qquad x = \pm\frac{\pi}{2}
+    \]
+    ou
+    \[
+      \sin(y) = 0 \qquad y = 0
+    \]
+    Se $y=0$ a segunda equação se torna
+    \begin{align*}
+      \sin(x)\cos(0) & = 0 \\
+      \sin(x)        & = 0 \\
+      x              & = 0
+    \end{align*}
+    Então o primeiro ponto é
+    \[
+      P_1 = (0, 0)
+    \]
+
+    \vspace{\baselineskip}
+    Se $x = \sfrac{\pi}{2}$ a segunda equação se torna
+    \begin{align*}
+      \sin\left(\frac{\pi}{2}\right)\cos(y) & = 0                \\
+      \cos(y)                               & = 0                \\
+      y                                     & = \pm\frac{\pi}{2}
+    \end{align*}
+    Temos então os pontos
+    \[
+      P_2 = \left(\frac{\pi}{2}, \frac{\pi}{2}\right)
+      \quad\text{e}\quad
+      P_3 = \left(\frac{\pi}{2}, -\frac{\pi}{2}\right)
+    \]
+
+    \vspace{\baselineskip}
+    Se $x = -\sfrac{\pi}{2}$ a segunda equação se torna
+    \begin{align*}
+      \sin\left(-\frac{\pi}{2}\right)\cos(y) & = 0                \\
+      -\cos(y)                               & = 0                \\
+      y                                      & = \pm\frac{\pi}{2}
+    \end{align*}
+    Temos então os pontos
+    \[
+      P_4 = \left(-\frac{\pi}{2}, \frac{\pi}{2}\right)
+      \quad\text{e}\quad
+      P_5 = \left(-\frac{\pi}{2}, -\frac{\pi}{2}\right)
+    \]
+
+    \vspace{\baselineskip}
+    Para \textbf{classificar} os pontos críticos precisamos
+    do determinante da Hessiana
+    \begin{align*}
+      \DS{f}{x}
+      & = \D{}{x}\left(\cos(x)\sin(y)\right)
+        = -\sin(x)\sin(y) \\
+      \DS{f}{y}
+      & = \D{}{y}\left(\sin(x)\cos(y)\right)
+        = -\sin(x)\sin(y) \\
+      \DM{f}{x}{y}
+      & = \D{}{x}\left(\sin(x)\cos(y)\right)
+        = \cos(x)\cos(y)
+    \end{align*}
+    \begin{align*}
+      D(x, y)
+      & = f_{xx}(x, y) f_{yy}(x, y) - \left(f_{xy}(x, y)\right)^2 \\
+      & = \left(-\sin(x)\sin(y)\right) \\
+      & \hpm \times
+          \left(-\sin(x)\sin(y)\right) \\
+      & \hpm - \left(\cos(x)\cos(y)\right)^2 \\
+      & = \sin^2(x)\sin^2(y) - \cos^2(x)\cos^2(y)
+    \end{align*}
+
+    \vspace{\baselineskip}
+    Classificando o ponto $P_1$
+    \begin{align*}
+      D\left(0, 0\right)
+      & = \sin^2(0)\sin^2(0) - \cos^2(0)\cos^2(0) \\
+      & = 0 \times 0 - 1 \times 1 = -1 < 0
+    \end{align*}
+    O ponto $P_1$ é um ponto de sela
+
+    \vspace{\baselineskip}
+    Classificando o ponto $P_2$
+    \begin{align*}
+      D\left(\frac{\pi}{2}, \frac{\pi}{2}\right)
+      & = \sin^2\left(\frac{\pi}{2}\right)
+          \sin^2\left(\frac{\pi}{2}\right) \\
+      & - \cos^2\left(\frac{\pi}{2}\right)
+          \cos^2\left(\frac{\pi}{2}\right) \\
+      & = 1 \times 1 - 0 \times 0 \\
+      &  = 1 > 0  \\
+      f_{xx}\left(\frac{\pi}{2}, \frac{\pi}{2}\right)
+      & = -\sin\left(\frac{\pi}{2}\right)
+           \sin\left(\frac{\pi}{2}\right) \\
+      & = -1\times 1 \\
+      &  = -1 < 0
+    \end{align*}
+    O ponto $P_2$ é um máximo local
+
+    \vspace{\baselineskip}
+    Classificando o ponto $P_3$
+    \begin{align*}
+      D\left(\frac{\pi}{2}, -\frac{\pi}{2}\right)
+      & = \sin^2\left( \frac{\pi}{2}\right)
+          \sin^2\left(-\frac{\pi}{2}\right) \\
+      & - \cos^2\left( \frac{\pi}{2}\right)
+          \cos^2\left(-\frac{\pi}{2}\right) \\
+      & = 1 \times (-1)^2 - 0 \times 0 \\
+      &  = 1 > 0  \\
+      f_{xx}\left(\frac{\pi}{2},-\frac{\pi}{2}\right)
+      & = -\sin\left( \frac{\pi}{2}\right)
+           \sin\left(-\frac{\pi}{2}\right) \\
+      & = -1\times (-1) \\
+      &  = 1 > 0
+    \end{align*}
+    O ponto $P_3$ é um mínimo local
+
+    \vspace{\baselineskip}
+    Classificando o ponto $P_4$
+    \begin{align*}
+      D\left(-\frac{\pi}{2}, \frac{\pi}{2}\right)
+      & = \sin^2\left(-\frac{\pi}{2}\right)
+          \sin^2\left( \frac{\pi}{2}\right) \\
+      & - \cos^2\left(-\frac{\pi}{2}\right)
+          \cos^2\left( \frac{\pi}{2}\right) \\
+      & = (-1)^2 \times 1 - 0 \times 0 \\
+      &  = 1 > 0  \\
+      f_{xx}\left(-\frac{\pi}{2}, \frac{\pi}{2}\right)
+      & = -\sin\left(-\frac{\pi}{2}\right)
+           \sin\left( \frac{\pi}{2}\right) \\
+      & = -(-1)\times 1 \\
+      &  = 1 > 0
+    \end{align*}
+    O ponto $P_4$ é um mínimo local
+
+    \vspace{\baselineskip}
+    Classificando o ponto $P_5$
+    \begin{align*}
+      D\left(-\frac{\pi}{2}, -\frac{\pi}{2}\right)
+      & = \sin^2\left(-\frac{\pi}{2}\right)
+          \sin^2\left(-\frac{\pi}{2}\right) \\
+      & - \cos^2\left(-\frac{\pi}{2}\right)
+          \cos^2\left(-\frac{\pi}{2}\right) \\
+      & = (-1)^2 \times (-1)^2 - 0 \times 0 \\
+      & = 1 > 0  \\
+      f_{xx}\left(-\frac{\pi}{2},-\frac{\pi}{2}\right)
+      & = -\sin\left(-\frac{\pi}{2}\right)
+           \sin\left(-\frac{\pi}{2}\right) \\
+      & = -(-1) \times (-1) \\
+      & = -1 < 0
+    \end{align*}
+    O ponto $P_5$ é um máximo local
+  \end{multicols}
+\end{answer}
+
+% 04
+%------------------------------------------------------------------------------%
+\exercise{30}
+Encontre o valor mínimo de
+\(
+  x^2 + y^2
+\)
+sujeito a
+\(
+  xy = 1
+\)
+\clearpagequestiononly
+
+\begin{answer}
+\setlength\columnsep{3em}
+\begin{multicols}{2}
+\raggedcolumns
+  Queremos encontrar os valores máximo e mínimo da função
+  \[
+    f(x,y) = x^2 + y^2
+  \]
+  sujeitos a restrição
+  \[
+    g(x, y) = xy = 1
+  \]
+  Gradiente de $f$
+  \[
+    \D{f}{x}
+    = \D{}{x}\left(x^2 + y^2\right)
+    = 2x
+  \]
+  \[
+    \D{f}{y}
+    = \D{}{y}\left(x^2 + y^2\right)
+    = 2y
+  \]
+  \[
+    \nabla f(x, y) = \vetor{2x}{2y}
+  \]
+  Gradiente de $g$
+  \[
+    \D{g}{x}
+    = \D{}{x}\left(xy\right)
+    = y
+  \]
+  \[
+    \D{g}{y}
+    = \D{}{y}\left(xy\right)
+    = x
+  \]
+  \[
+    \nabla g(x, y) = \vetor{y}{x}
+  \]
+  Precisamos resolver o sistema
+  \begin{align*}
+    2x & = \lambda y \\
+    2y & = \lambda x \\
+    xy & = 1
+  \end{align*}
+  Pela terceira equação sabemos que $x\neq 0$ e $y\neq 0$.
+  Isolando $\lambda$ na primeira, \(\lambda = \frac{2x}{y}\),
+  e substituindo na segunda, temos
+  \begin{align*}
+    2y  & = \lambda x      \\
+    2y  & = \frac{2x}{y} x \\
+    y^2 & = x^2            \\
+    y   & = \pm x
+  \end{align*}
+
+  Se $y=x$, da terceira equação temos
+  \begin{align*}
+    xy  & = 1     \\
+    x^2 & = 1     \\
+    x   & = \pm 1
+  \end{align*}
+  Temos, então, os pontos
+  \[
+    P_1 = (1, 1)
+    \qquad\text{e}\qquad
+    P_2 = (-1, -1)
+  \]
+
+  Se $y=-x$, da terceira equação temos
+  \begin{align*}
+    xy    & = 1   \\
+    x(-x) & = 1   \\
+    -x^2  & = 1   \\
+    x^2   & = - 1
+  \end{align*}
+  Não existe solução neste caso.
+
+  Avaliando $f$ nos pontos encontrados, temos
+  \begin{align*}
+    f(1, 1)   & = 1^2 + 1^2 = 2      \\
+    f(-1, -1) & = (-1)^2 + (-1)^2= 2
+  \end{align*}
+  Os dois pontos são pontos de mínimo e o valor mínimo da função é 2
+\end{multicols}
+\end{answer}
+
+%------------------------------------------------------------------------------%
+\end{document}
+%------------------------------------------------------------------------------%

@@ -1,0 +1,60 @@
+%------------------------------------------------------------------------------%
+% Definições particulares para as Apresentações de
+% Calculo de Funções de Várias Variáveis I
+%------------------------------------------------------------------------------%
+
+\usepackage{avaliacao}
+
+%------------------------------------------------------------------------------%
+
+% Issue an error is include file is missing
+\def\mkfilename#1{%
+  \if\relax\detokenize\expandafter{#1}\relax\else#1/\fi%
+}
+
+\AddToHook{include/before}{%
+  \IfFileExists{\mkfilename\CurrentFilePath\CurrentFile}{}{%
+    \GenericError{}{Error: File \mkfilename\CurrentFilePath\CurrentFile.tex not found!}{\@gobble}{}%
+}}
+
+%------------------------------------------------------------------------------%
+
+% Aumenta o espaço vertical no align
+\setlength{\jot}{12pt}
+
+%------------------------------------------------------------------------------%
+
+\graphicspath  {{./figs/},{./asy/}}
+\def\input@path{{./figs/}}
+
+\newcommand{\fmedio}{f_{\text{médio}}}
+
+\newcommand{\vpt}{\vphantom{\int_{\int}^{\int}}}
+
+\newcommand*{\hint}[1]{\underline{Dica}: \textit{#1}}
+
+\newcommand{\D} [2]{\frac{\partial   {#1}}{\partial {#2}}}
+\newcommand{\DS}[2]{\frac{\partial^2 {#1}}{\partial {#2}^2}}
+\newcommand{\DM}[3]{\frac{\partial^2 {#1}}{\partial {#2} \partial {#3}}}
+
+\newcommand{\vetor}[2]{\left(\begin{array}{c} #1 \\ #2 \end{array}\right)}
+\newcommand{\Vetor}[2]{\left(\begin{array}{c}
+  \displaystyle #1 \\[5mm]
+  \displaystyle #2
+\end{array}\right)}
+
+\newcommand{\vetortri}[3]{\left(\begin{array}{c} #1 \\ #2 \\ #3 \end{array}\right)}
+\newcommand{\Vetortri}[3]{\left(\begin{array}{c}
+  \displaystyle #1 \\[5mm]
+  \displaystyle #2 \\[5mm]
+  \displaystyle #3
+\end{array}\right)}
+
+\newcommand{\veci}{\bm{i}}
+\newcommand{\vecj}{\bm{j}}
+\newcommand{\veck}{\bm{k}}
+
+\DeclareMathOperator\CIS{cis}
+\newcommand{\cis}[1]{\left[\cos\left(#1\right) + i \sin\left(#1\right)\right]}
+
+%------------------------------------------------------------------------------%
