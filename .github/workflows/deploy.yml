@@ -33,5 +33,5 @@ jobs:
           external_repository: material-didatico/material-didatico.github.io
           personal_token: ${{ secrets.GH_PAT }}
           publish_dir: ./_publish
-          publish_branch: gh-pages
+          publish_branch: main
           destination_dir: cfvv1
