@@ -42,6 +42,6 @@ distclean:
 	@ for D in ${SUBDIRS}; do   \
 	  make -C $$D distclean ;   \
 	done
-	@ rm -r _publish
+	@ rm -rf _publish
 
 #------------------------------------------------------------------------------#
