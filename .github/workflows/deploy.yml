@@ -30,7 +30,8 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
+          external_repository: material-didatico/material-didatico.github.io
+          personal_token: ${{ secrets.GH_PAT }}
           publish_dir: ./_publish
+          publish_branch: gh-pages
           destination_dir: cfvv1
