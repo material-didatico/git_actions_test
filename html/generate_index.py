@@ -7,70 +7,104 @@ aulas_dir   = publish_dir / "aulas"
 index_file  = publish_dir / "index.html"
 
 title = 'Materiais de CFVVI'
-disc  = 'Cálculo de Funções de Várias Variáveis I'
+discipline = 'Cálculo de Funções de Várias Variáveis I'
+
+add_book = True
 
 #------------------------------------------------------------------------------#
-def html_header() -> str:
-    return f"""<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{title}</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<h1>{title}</h1>
-<p>Arquivos em PDF disponíveis para download</p>
-<p>Materiais para a disciplina {disc}</p>
-"""
+def write_header(f, title: str, discipline: str):
+    f.write(f"""<!DOCTYPE html>
+      <html lang="pt-BR">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{title}</title>
+        <link rel="stylesheet" href="styles.css">
+      </head>
+      <body>
+      <h1>{title}</h1>
+      <p>Materiais para a disciplina {discipline}</p>
+      <a href="/">Home</a>
+      """)
 
 #------------------------------------------------------------------------------#
-def html_footer() -> str:
-    return """  <footer>
-&copy; 2025 Luis Alberto D'Afonseca. Licenciado sob
-<a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
-</footer>
-</body>
-</html>
-"""
+def open_section(f, title):
+    f.write(f"""<details close>
+    <summary>{title}</summary>
+    """)
+
+#------------------------------------------------------------------------------#
+def close_section(f):
+    f.write("</details>")
+
+#------------------------------------------------------------------------------#
+def open_sub_section(f, path: Path):
+    f.write(f"""<details close>
+    <summary>{path.name.replace('_', ' ')}</summary>
+    """)
+
+#------------------------------------------------------------------------------#
+def close_sub_section(f):
+    f.write("</details>")
+
+#------------------------------------------------------------------------------#
+# def write_folder(f, path: Path):
+#     f.write(f"<li>{path.name.replace('_', ' ')}\n")
+
+#------------------------------------------------------------------------------#
+def write_pdf_link(f, file: Path):
+    text = file.name.replace('_', ' ').replace('.pdf', '')
+    f.write(f"<li><a href=\"{file}\" download>{text}</a></li>\n")
+
+#------------------------------------------------------------------------------#
+def write_footer(f):
+    f.write("""  <footer>
+      &copy; 2025 Luis Alberto D'Afonseca. Licenciado sob
+      <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
+      </footer>
+      </body>
+      </html>
+      """)
 
 #------------------------------------------------------------------------------#
 with index_file.open("w", encoding="utf-8") as f:
 
-    f.write(html_header())
+    write_header(f, title, discipline)
 
     # Apostila
-    f.write("""<div class="section">
-      <h2>Apostila</h2>
-    """)
-
-    f.write("<ul>\n")
-    for file in sorted(publish_dir.glob("*.pdf")):
-        f.write(f"<li><a href=\"{file.name}\" download>{file.name}</a></li>\n")
-    f.write("</ul>\n")
-    f.write("</div>\n")
+    if add_book:
+        open_section(f, "Apostila")
+        f.write("<ul>\n")
+        for file in sorted(publish_dir.glob("*.pdf")):
+            write_pdf_link(f, file)
+        f.write("</ul>\n")
+        f.write("</div>\n")
+        close_section(f)
 
     # Aulas
-    f.write("""<div class="section">
-      <h2>Apresentações das Aulas</h2>
-    """)
+    open_section(f, "Apresentações das Aulas")
     f.write("<ul>\n")
-    for file in sorted(aulas_dir.rglob("*.pdf")):
-        relative_path = file.relative_to(publish_dir)
-        f.write(f"<li><a href=\"{relative_path}\" download>{relative_path.name}</a></li>\n")
+    for folder in sorted(aulas_dir.glob("*")):
+        open_sub_section(f, folder)
+        f.write("<ul>\n")
+        for file in sorted(folder.glob("*.pdf")):
+            write_pdf_link(f, file.relative_to(publish_dir))
+        close_sub_section(f)
     f.write("</ul>\n")
+    close_section(f)
 
     # Provas
-    f.write("""<div class="section">
-      <h2>Provas Anteriores</h2>
-    """)
+    open_section(f, "Provas Anteriores")
     f.write("<ul>\n")
-    for file in sorted(provas_dir.rglob("*.pdf")):
-        relative_path = file.relative_to(publish_dir)
-        f.write(f"<li><a href=\"{relative_path}\" download>{relative_path.name}</a></li>\n")
+    for folder in sorted(provas_dir.glob("*")):
+        open_sub_section(f, folder)
+        f.write("<ul>\n")
+        for file in sorted(folder.glob("*.pdf")):
+            write_pdf_link(f, file.relative_to(publish_dir))
+        close_sub_section(f)
     f.write("</ul>\n")
+    close_section(f)
 
-    f.write(html_footer())
+    write_footer(f)
 
 #------------------------------------------------------------------------------#
