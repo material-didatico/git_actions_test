@@ -17,51 +17,7 @@ def html_header() -> str:
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
-  <style>
-    body {{
-      background-color: #121212;
-      color: #f0f0f0;
-      font-family: 'Segoe UI', sans-serif;
-      max-width: 800px;
-      margin: auto;
-      padding: 2rem;
-      line-height: 1.6;
-    }}
-    h1, h2 {{
-      color: #ffffff;
-      border-bottom: 1px solid #333;
-      padding-bottom: 0.3rem;
-    }}
-    ul {{
-      list-style-type: none;
-      padding: 0;
-    }}
-    li {{
-      margin-bottom: 0.8rem;
-    }}
-    a {{
-      color: #90caf9;
-      text-decoration: none;
-      background-color: #1e1e1e;
-      padding: 0.4rem 0.7rem;
-      border-radius: 6px;
-      display: inline-block;
-      transition: background-color 0.3s, color 0.3s;
-    }}
-    a:hover {{
-      background-color: #333;
-      color: #ffffff;
-    }}
-    .section {{
-      margin-top: 2.5rem;
-    }}
-    footer {{
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #aaaaaa;
-      text-align: center;
-    }}
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <h1>{title}</h1>
@@ -72,7 +28,8 @@ def html_header() -> str:
 #------------------------------------------------------------------------------#
 def html_footer() -> str:
     return """  <footer>
-&copy; 2025 Luis Alberto D'Afonseca. Licenciado sob CC BY-SA 4.0.
+&copy; 2025 Luis Alberto D'Afonseca. Licenciado sob
+<a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
 </footer>
 </body>
 </html>

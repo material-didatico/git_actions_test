@@ -16,6 +16,7 @@ all:
 
 #------------------------------------------------------------------------------#
 
+HTML=html
 PUBLISH=_publish
 PROVAS=$(PUBLISH)/provas
 AULAS=$(PUBLISH)/aulas
@@ -30,7 +31,8 @@ publish: all
 	cp ./3-provas/2024-1/*.pdf $(PROVAS)/2024-1/
 	cp ./3-provas/2025-1/*.pdf $(PROVAS)/2025-1/
 	cp -r ./2-apresentacoes/pdf/2-hand $(AULAS)
-	python generate_index.py
+	cp $(HTML)/styles.css $(PUBLISH)
+	python $(HTML)/generate_index.py
 
 #------------------------------------------------------------------------------#
 
